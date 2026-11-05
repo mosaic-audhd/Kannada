@@ -17,12 +17,20 @@ const SCENARIOS = [
       { s: 'a', en: 'Four, one, two, nine.', w: [['naalku', 'ನಾಲ್ಕು', 'Number', 'four'], ['ondu', 'ಒಂದು', 'Number', 'one'], ['eraDu', 'ಎರಡು', 'Number', 'two'], ['ombattu', 'ಒಂಬತ್ತು', 'Number', 'nine']] },
       { s: 'b', en: 'Where do you need to go?', w: [['Ellige', 'ಎಲ್ಲಿಗೆ', 'Question word', 'to where'], ['hogbeku?', 'ಹೋಗ್ಬೇಕು?', 'Verb', 'need to go']] },
       { s: 'a', en: 'I need to go to Indiranagar.', w: [['Indiranagarakke', 'ಇಂದಿರಾನಗರಕ್ಕೆ', 'Noun', 'to Indiranagar'], ['hogbeku', 'ಹೋಗ್ಬೇಕು', 'Verb', 'need to go']] },
+      { s: 'b', en: "Where in Indiranagar?", w: [['Indiranagaradalli', 'ಇಂದಿರಾನಗರದಲ್ಲಿ', 'Noun', 'in Indiranagar'], ['ellige?', 'ಎಲ್ಲಿಗೆ?', 'Question word', 'to where']] },
+      { s: 'a', en: "100 Feet Road, near the metro station.", w: [['Nooru', 'ನೂರು', 'Number', 'hundred'], ['aDi', 'ಅಡಿ', 'Noun', 'feet'], ['raste', 'ರಸ್ತೆ', 'Noun', 'road'], ['metro station', 'ಮೆಟ್ರೋ ಸ್ಟೇಷನ್', 'Noun', 'metro station'], ['hatra', 'ಹತ್ರ', 'Postposition', 'near']] },
       { s: 'b', en: 'Do you have luggage?', w: [['Luggage', 'ಲಗೇಜ್', 'Noun', 'luggage (English)'], ['ideya?', 'ಇದೆಯಾ?', 'Verb', 'is there?']] },
       { s: 'a', en: 'Yes, I have two bags.', w: [['Haudu', 'ಹೌದು', 'Particle', 'yes'], ['eraDu', 'ಎರಡು', 'Number', 'two'], ['bag', 'ಬ್ಯಾಗ್', 'Noun', 'bag (English)'], ['ide', 'ಇದೆ', 'Verb', 'there is']] },
+      { s: 'b', en: "I will put the bags in the boot.", w: [['Bag-na', 'ಬ್ಯಾಗ್‌ನ', 'Noun', 'the bags'], ['Dikki-alli', 'ಡಿಕ್ಕಿಯಲ್ಲಿ', 'Noun', 'in the car boot'], ['iDteeni', 'ಇಡ್ತೀನಿ', 'Verb', 'I will keep']] },
       { s: 'a', en: 'How long will it take?', w: [['Eshtu', 'ಎಷ್ಟು', 'Question word', 'how much'], ['hottu', 'ಹೊತ್ತು', 'Noun', 'time'], ['aagutte?', 'ಆಗುತ್ತೆ?', 'Verb', 'will it take']] },
       { s: 'b', en: 'It will take one hour.', w: [['Ondu', 'ಒಂದು', 'Number', 'one'], ['ganTe', 'ಗಂಟೆ', 'Noun', 'hour'], ['aagutte', 'ಆಗುತ್ತೆ', 'Verb', 'will take']] },
+      { s: 'a', en: "Is there a toll?", w: [['Toll', 'ಟೋಲ್', 'Noun', 'toll'], ['ideya?', 'ಇದೆಯಾ?', 'Verb', 'is there?']] },
+      { s: 'b', en: "Yes, it is added to the bill.", w: [['Ide', 'ಇದೆ', 'Verb', 'there is'], ['bill-nalli', 'ಬಿಲ್‌ನಲ್ಲಿ', 'Noun', 'in the bill'], ['serutte', 'ಸೇರುತ್ತೆ', 'Verb', 'gets added']] },
       { s: 'a', en: 'Please turn on the AC.', w: [['AC', 'ಎಸಿ', 'Noun', 'AC (English)'], ['haaki', 'ಹಾಕಿ', 'Verb', 'please put on'], ['please', 'ಪ್ಲೀಸ್', 'Particle', 'please (English)']] },
       { s: 'b', en: 'Okay, I will turn it on.', w: [['Sari', 'ಸರಿ', 'Particle', 'okay'], ['haakteeni', 'ಹಾಕ್ತೀನಿ', 'Verb', 'I will put on']] },
+      { s: 'b', en: "Are you new to Bengaluru?", w: [['Neevu', 'ನೀವು', 'Pronoun', 'you (polite)'], ['Bengaloorige', 'ಬೆಂಗಳೂರಿಗೆ', 'Noun', 'to Bengaluru'], ['hosabra?', 'ಹೊಸಬ್ರಾ?', 'Noun', 'a newcomer?']] },
+      { s: 'a', en: "Yes, I am learning Kannada.", w: [['Haudu', 'ಹೌದು', 'Particle', 'yes'], ['Kannada', 'ಕನ್ನಡ', 'Noun', 'Kannada'], ['kaleetaa', 'ಕಲೀತಾ', 'Verb', 'learning'], ['iddeeni', 'ಇದ್ದೀನಿ', 'Verb', 'I am']] },
+      { s: 'b', en: "Great! You speak well.", w: [['Sakkath!', 'ಸಕತ್!', 'Adjective', 'great'], ['Chennaagi', 'ಚೆನ್ನಾಗಿ', 'Adverb', 'well'], ['maataaDteera', 'ಮಾತಾಡ್ತೀರಾ', 'Verb', 'you speak']] },
       { s: 'a', en: 'Stop here.', w: [['Illi', 'ಇಲ್ಲಿ', 'Adverb', 'here'], ['nilsi', 'ನಿಲ್ಸಿ', 'Verb', 'please stop']] },
       { s: 'b', en: 'Six hundred rupees.', w: [['Aaru', 'ಆರು', 'Number', 'six'], ['nooru', 'ನೂರು', 'Number', 'hundred'], ['rupaayi', 'ರೂಪಾಯಿ', 'Noun', 'rupees']] },
       { s: 'a', en: 'I will pay by UPI. Thank you!', w: [['UPI', 'ಯುಪಿಐ', 'Noun', 'UPI (English)'], ['maaDteeni', 'ಮಾಡ್ತೀನಿ', 'Verb', 'I will do'], ['Dhanyavaada', 'ಧನ್ಯವಾದ', 'Noun', 'thanks']] }
@@ -45,12 +53,19 @@ const SCENARIOS = [
       { s: 'b', en: 'No meter. Give a hundred.', w: [['Meter', 'ಮೀಟರ್', 'Noun', 'meter'], ['illa', 'ಇಲ್ಲ', 'Verb', 'is not there'], ['nooru', 'ನೂರು', 'Number', 'hundred'], ['koDi', 'ಕೊಡಿ', 'Verb', 'please give']] },
       { s: 'a', en: 'That is too much. I will give eighty.', w: [['Tumba', 'ತುಂಬಾ', 'Adverb', 'very'], ['jaasti', 'ಜಾಸ್ತಿ', 'Adjective', 'more / too much'], ['embattu', 'ಎಂಬತ್ತು', 'Number', 'eighty'], ['koDteeni', 'ಕೊಡ್ತೀನಿ', 'Verb', 'I will give']] },
       { s: 'b', en: 'Okay, sit down.', w: [['Sari', 'ಸರಿ', 'Particle', 'okay'], ['kootkoLLi', 'ಕೂತ್ಕೊಳ್ಳಿ', 'Verb', 'please sit']] },
+      { s: 'a', en: "Is there a lot of traffic?", w: [['Traffic', 'ಟ್ರಾಫಿಕ್', 'Noun', 'traffic'], ['jaasti', 'ಜಾಸ್ತಿ', 'Adjective', 'a lot'], ['ideya?', 'ಇದೆಯಾ?', 'Verb', 'is there?']] },
+      { s: 'b', en: "Yes, a lot of traffic today.", w: [['Haudu', 'ಹೌದು', 'Particle', 'yes'], ['ivattu', 'ಇವತ್ತು', 'Adverb', 'today'], ['tumba', 'ತುಂಬಾ', 'Adverb', 'a lot'], ['traffic', 'ಟ್ರಾಫಿಕ್', 'Noun', 'traffic']] },
       { s: 'a', en: 'Go a little slowly.', w: [['Swalpa', 'ಸ್ವಲ್ಪ', 'Adverb', 'a little'], ['nidhaanavaagi', 'ನಿಧಾನವಾಗಿ', 'Adverb', 'slowly'], ['hogi', 'ಹೋಗಿ', 'Verb', 'please go']] },
       { s: 'b', en: 'Which way?', w: [['Yaava', 'ಯಾವ', 'Question word', 'which'], ['kaDe?', 'ಕಡೆ?', 'Noun', 'side / way']] },
       { s: 'a', en: 'Take a right up ahead.', w: [['Munde', 'ಮುಂದೆ', 'Adverb', 'ahead'], ['right', 'ರೈಟ್', 'Noun', 'right (English)'], ['tagoLLi', 'ತಗೊಳ್ಳಿ', 'Verb', 'please take']] },
+      { s: 'b', en: "Then?", w: [['Aamele?', 'ಆಮೇಲೆ?', 'Adverb', 'after that']] },
+      { s: 'a', en: "Left after the signal.", w: [['Signal', 'ಸಿಗ್ನಲ್', 'Noun', 'signal'], ['aadmele', 'ಆದ್ಮೇಲೆ', 'Postposition', 'after'], ['left', 'ಲೆಫ್ಟ್', 'Noun', 'left']] },
       { s: 'a', en: 'Here is enough.', w: [['Illi', 'ಇಲ್ಲಿ', 'Adverb', 'here'], ['saaku', 'ಸಾಕು', 'Verb', 'is enough']] },
+      { s: 'b', en: "Shall I stop right here?", w: [['Ille', 'ಇಲ್ಲೇ', 'Adverb', 'right here'], ['nilsla?', 'ನಿಲ್ಸ್ಲಾ?', 'Verb', 'shall I stop?']] },
+      { s: 'a', en: "Yes, in front of that shop.", w: [['Haudu', 'ಹೌದು', 'Particle', 'yes'], ['aa', 'ಆ', 'Adjective', 'that'], ['angaDi', 'ಅಂಗಡಿ', 'Noun', 'shop'], ['munde', 'ಮುಂದೆ', 'Postposition', 'in front of']] },
       { s: 'b', en: 'Do you have change?', w: [['Chillare', 'ಚಿಲ್ಲರೆ', 'Noun', 'small change'], ['ideya?', 'ಇದೆಯಾ?', 'Verb', 'is there?']] },
-      { s: 'a', en: 'Yes, here, take it.', w: [['Ide', 'ಇದೆ', 'Verb', 'there is'], ['tagoLLi', 'ತಗೊಳ್ಳಿ', 'Verb', 'please take']] }
+      { s: 'a', en: 'Yes, here, take it.', w: [['Ide', 'ಇದೆ', 'Verb', 'there is'], ['tagoLLi', 'ತಗೊಳ್ಳಿ', 'Verb', 'please take']] },
+      { s: 'b', en: "Thank you. Go and come back!", w: [['Dhanyavaada', 'ಧನ್ಯವಾದ', 'Noun', 'thanks'], ['hogi', 'ಹೋಗಿ', 'Verb', 'go'], ['banni', 'ಬನ್ನಿ', 'Verb', 'come (a Kannada goodbye)']] }
     ]
   },
   {
@@ -66,12 +81,19 @@ const SCENARIOS = [
     lines: [
       { s: 'b', en: 'What would you like?', w: [['Enu', 'ಏನು', 'Question word', 'what'], ['beku?', 'ಬೇಕು?', 'Verb', 'is needed']] },
       { s: 'a', en: 'One masala dosa and two idlis.', w: [['Ondu', 'ಒಂದು', 'Number', 'one'], ['masaale dose', 'ಮಸಾಲೆ ದೋಸೆ', 'Noun', 'masala dosa'], ['eraDu', 'ಎರಡು', 'Number', 'two'], ['iDli', 'ಇಡ್ಲಿ', 'Noun', 'idli']] },
+      { s: 'b', en: "Anything else?", w: [['Bere', 'ಬೇರೆ', 'Adjective', 'other'], ['enaadru?', 'ಏನಾದ್ರೂ?', 'Pronoun', 'anything']] },
+      { s: 'a', en: "One vada too.", w: [['Ondu', 'ಒಂದು', 'Number', 'one'], ['vaDe', 'ವಡೆ', 'Noun', 'vada'], ['kooDa', 'ಕೂಡ', 'Particle', 'also']] },
       { s: 'b', en: 'Parcel, or will you eat here?', w: [['Parcel-aa', 'ಪಾರ್ಸೆಲ್ಲಾ', 'Noun', 'parcel? (English)'], ['ille', 'ಇಲ್ಲೇ', 'Adverb', 'right here'], ['tinteera?', 'ತಿಂತೀರಾ?', 'Verb', 'will you eat?']] },
       { s: 'a', en: 'I will eat here.', w: [['Ille', 'ಇಲ್ಲೇ', 'Adverb', 'right here'], ['tinteeni', 'ತಿಂತೀನಿ', 'Verb', 'I will eat']] },
+      { s: 'b', en: "Take the token and give it at the counter.", w: [['Token', 'ಟೋಕನ್', 'Noun', 'token'], ['tagoLLi', 'ತಗೊಳ್ಳಿ', 'Verb', 'please take'], ['counter-nalli', 'ಕೌಂಟರ್‌ನಲ್ಲಿ', 'Noun', 'at the counter'], ['koDi', 'ಕೊಡಿ', 'Verb', 'please give']] },
       { s: 'b', en: 'Do you want coffee?', w: [['Coffee', 'ಕಾಫಿ', 'Noun', 'coffee'], ['beka?', 'ಬೇಕಾ?', 'Verb', 'is it needed?']] },
       { s: 'a', en: 'Yes, one coffee, less sugar.', w: [['Haudu', 'ಹೌದು', 'Particle', 'yes'], ['ondu', 'ಒಂದು', 'Number', 'one'], ['coffee', 'ಕಾಫಿ', 'Noun', 'coffee'], ['sakkare', 'ಸಕ್ಕರೆ', 'Noun', 'sugar'], ['kammi', 'ಕಮ್ಮಿ', 'Adjective', 'less']] },
+      { s: 'a', en: "Give a little more chutney.", w: [['ChaTni', 'ಚಟ್ನಿ', 'Noun', 'chutney'], ['innu', 'ಇನ್ನೂ', 'Adverb', 'more'], ['swalpa', 'ಸ್ವಲ್ಪ', 'Adverb', 'a little'], ['koDi', 'ಕೊಡಿ', 'Verb', 'please give']] },
+      { s: 'b', en: "Take it, there is sambar too.", w: [['TagoLLi', 'ತಗೊಳ್ಳಿ', 'Verb', 'please take'], ['saambaar', 'ಸಾಂಬಾರ್', 'Noun', 'sambar'], ['kooDa', 'ಕೂಡ', 'Particle', 'also'], ['ide', 'ಇದೆ', 'Verb', 'there is']] },
       { s: 'a', en: 'How much is it?', w: [['Eshtu', 'ಎಷ್ಟು', 'Question word', 'how much'], ['aaytu?', 'ಆಯ್ತು?', 'Verb', 'did it become']] },
       { s: 'b', en: 'One hundred and fifty rupees.', w: [['Nooraivattu', 'ನೂರೈವತ್ತು', 'Number', 'one hundred fifty'], ['rupaayi', 'ರೂಪಾಯಿ', 'Noun', 'rupees']] },
+      { s: 'a', en: "Does UPI work?", w: [['UPI', 'ಯುಪಿಐ', 'Noun', 'UPI'], ['aagutta?', 'ಆಗುತ್ತಾ?', 'Verb', 'will it do?']] },
+      { s: 'b', en: "It works, scan here.", w: [['Aagutte', 'ಆಗುತ್ತೆ', 'Verb', 'it works'], ['scan', 'ಸ್ಕ್ಯಾನ್', 'Noun', 'scan'], ['maaDi', 'ಮಾಡಿ', 'Verb', 'please do']] },
       { s: 'a', en: 'The dosa was very good.', w: [['Dose', 'ದೋಸೆ', 'Noun', 'dosa'], ['tumba', 'ತುಂಬಾ', 'Adverb', 'very'], ['chennaagittu', 'ಚೆನ್ನಾಗಿತ್ತು', 'Verb', 'was good']] }
     ]
   },
@@ -87,6 +109,8 @@ const SCENARIOS = [
     roles: { a: { en: 'Customer', kn: 'ಗ್ರಾಹಕ' }, b: { en: 'Vendor', kn: 'ವ್ಯಾಪಾರಿ' } },
     lines: [
       { s: 'b', en: 'Come, what do you need?', w: [['Banni', 'ಬನ್ನಿ', 'Verb', 'please come'], ['enu', 'ಏನು', 'Question word', 'what'], ['beku?', 'ಬೇಕು?', 'Verb', 'is needed']] },
+      { s: 'a', en: "Are the tomatoes good today?", w: [['Ivattu', 'ಇವತ್ತು', 'Adverb', 'today'], ['tomato', 'ಟೊಮೇಟೊ', 'Noun', 'tomato'], ['chennaagideya?', 'ಚೆನ್ನಾಗಿದೆಯಾ?', 'Verb', 'is it good?']] },
+      { s: 'b', en: "Yes, they came in today.", w: [['Haudu', 'ಹೌದು', 'Particle', 'yes'], ['ivattu', 'ಇವತ್ತು', 'Adverb', 'today'], ['bandiddu', 'ಬಂದಿದ್ದು', 'Verb', 'the ones that came']] },
       { s: 'a', en: 'How much are tomatoes per kilo?', w: [['Tomato', 'ಟೊಮೇಟೊ', 'Noun', 'tomato'], ['kejige', 'ಕೆಜಿಗೆ', 'Noun', 'per kilo'], ['eshtu?', 'ಎಷ್ಟು?', 'Question word', 'how much']] },
       { s: 'b', en: 'Forty rupees a kilo.', w: [['Kejige', 'ಕೆಜಿಗೆ', 'Noun', 'per kilo'], ['nalavattu', 'ನಲವತ್ತು', 'Number', 'forty'], ['rupaayi', 'ರೂಪಾಯಿ', 'Noun', 'rupees']] },
       { s: 'a', en: 'Reduce it a little.', w: [['Swalpa', 'ಸ್ವಲ್ಪ', 'Adverb', 'a little'], ['kammi', 'ಕಮ್ಮಿ', 'Adjective', 'less'], ['maaDi', 'ಮಾಡಿ', 'Verb', 'please do']] },
@@ -94,8 +118,13 @@ const SCENARIOS = [
       { s: 'a', en: 'Okay, give me one kilo.', w: [['Sari', 'ಸರಿ', 'Particle', 'okay'], ['ondu', 'ಒಂದು', 'Number', 'one'], ['keji', 'ಕೆಜಿ', 'Noun', 'kilo'], ['koDi', 'ಕೊಡಿ', 'Verb', 'please give']] },
       { s: 'b', en: 'Do you need anything else?', w: [['Bere', 'ಬೇರೆ', 'Adjective', 'other'], ['enaadru', 'ಏನಾದ್ರೂ', 'Pronoun', 'anything'], ['beka?', 'ಬೇಕಾ?', 'Verb', 'is it needed?']] },
       { s: 'a', en: 'Half a kilo of onions.', w: [['Ardha', 'ಅರ್ಧ', 'Adjective', 'half'], ['keji', 'ಕೆಜಿ', 'Noun', 'kilo'], ['eeruLLi', 'ಈರುಳ್ಳಿ', 'Noun', 'onion']] },
+      { s: 'b', en: "Onions are thirty a kilo.", w: [['EeruLLi', 'ಈರುಳ್ಳಿ', 'Noun', 'onion'], ['kejige', 'ಕೆಜಿಗೆ', 'Noun', 'per kilo'], ['moovattu', 'ಮೂವತ್ತು', 'Number', 'thirty']] },
+      { s: 'a', en: "Do you have potatoes?", w: [['Aalugadde', 'ಆಲೂಗಡ್ಡೆ', 'Noun', 'potato'], ['ideya?', 'ಇದೆಯಾ?', 'Verb', 'is there?']] },
+      { s: 'b', en: "Not today, come tomorrow.", w: [['Ivattu', 'ಇವತ್ತು', 'Adverb', 'today'], ['illa', 'ಇಲ್ಲ', 'Verb', 'is not there'], ['naaLe', 'ನಾಳೆ', 'Adverb', 'tomorrow'], ['banni', 'ಬನ್ನಿ', 'Verb', 'please come']] },
       { s: 'a', en: 'Is the coriander free?', w: [['Kottambari', 'ಕೊತ್ತಂಬರಿ', 'Noun', 'coriander'], ['soppu', 'ಸೊಪ್ಪು', 'Noun', 'leaves'], ['free-naa?', 'ಫ್ರೀನಾ?', 'Adjective', 'free? (English)']] },
-      { s: 'b', en: 'Okay, take it.', w: [['Sari', 'ಸರಿ', 'Particle', 'okay'], ['tagoLLi', 'ತಗೊಳ್ಳಿ', 'Verb', 'please take']] }
+      { s: 'b', en: 'Okay, take it.', w: [['Sari', 'ಸರಿ', 'Particle', 'okay'], ['tagoLLi', 'ತಗೊಳ್ಳಿ', 'Verb', 'please take']] },
+      { s: 'a', en: "How much all together?", w: [['Ellaa', 'ಎಲ್ಲಾ', 'Pronoun', 'all'], ['seri', 'ಸೇರಿ', 'Verb', 'added together'], ['eshtu?', 'ಎಷ್ಟು?', 'Question word', 'how much']] },
+      { s: 'b', en: "Fifty rupees.", w: [['Aivattu', 'ಐವತ್ತು', 'Number', 'fifty'], ['rupaayi', 'ರೂಪಾಯಿ', 'Noun', 'rupees']] }
     ]
   },
   {
@@ -110,13 +139,20 @@ const SCENARIOS = [
     roles: { a: { en: 'Newcomer', kn: 'ಹೊಸಬರು' }, b: { en: 'Local person', kn: 'ಸ್ಥಳೀಯರು' } },
     lines: [
       { s: 'a', en: 'Where is the metro station?', w: [['Metro station', 'ಮೆಟ್ರೋ ಸ್ಟೇಷನ್', 'Noun', 'metro station'], ['elli', 'ಎಲ್ಲಿ', 'Question word', 'where'], ['ide?', 'ಇದೆ?', 'Verb', 'is it']] },
+      { s: 'b', en: "Which metro station?", w: [['Yaava', 'ಯಾವ', 'Question word', 'which'], ['metro station?', 'ಮೆಟ್ರೋ ಸ್ಟೇಷನ್?', 'Noun', 'metro station']] },
+      { s: 'a', en: "Trinity metro station.", w: [['Trinity', 'ಟ್ರಿನಿಟಿ', 'Noun', 'Trinity (station name)'], ['metro station', 'ಮೆಟ್ರೋ ಸ್ಟೇಷನ್', 'Noun', 'metro station']] },
       { s: 'b', en: 'Go straight.', w: [['Neravaagi', 'ನೇರವಾಗಿ', 'Adverb', 'straight'], ['hogi', 'ಹೋಗಿ', 'Verb', 'please go']] },
       { s: 'b', en: 'Take a left near the signal.', w: [['Signal', 'ಸಿಗ್ನಲ್', 'Noun', 'traffic signal'], ['hatra', 'ಹತ್ರ', 'Postposition', 'near'], ['left', 'ಲೆಫ್ಟ್', 'Noun', 'left (English)'], ['tagoLLi', 'ತಗೊಳ್ಳಿ', 'Verb', 'please take']] },
+      { s: 'a', en: "After the signal?", w: [['Signal', 'ಸಿಗ್ನಲ್', 'Noun', 'signal'], ['aadmele?', 'ಆದ್ಮೇಲೆ?', 'Postposition', 'after']] },
+      { s: 'b', en: "You will see it on the right.", w: [['BalagaDe', 'ಬಲಗಡೆ', 'Noun', 'right side'], ['kaaNutte', 'ಕಾಣುತ್ತೆ', 'Verb', 'it can be seen']] },
       { s: 'a', en: 'Is it very far?', w: [['Tumba', 'ತುಂಬಾ', 'Adverb', 'very'], ['doora', 'ದೂರ', 'Adjective', 'far'], ['ideya?', 'ಇದೆಯಾ?', 'Verb', 'is it?']] },
       { s: 'b', en: 'No, it is close. Five minutes.', w: [['Illa', 'ಇಲ್ಲ', 'Particle', 'no'], ['hatra', 'ಹತ್ರ', 'Adverb', 'near'], ['ide', 'ಇದೆ', 'Verb', 'it is'], ['aidu', 'ಐದು', 'Number', 'five'], ['nimisha', 'ನಿಮಿಷ', 'Noun', 'minutes']] },
       { s: 'a', en: 'Can I walk there?', w: [['NaDedu', 'ನಡೆದು', 'Verb', 'by walking'], ['hogbahuda?', 'ಹೋಗ್ಬಹುದಾ?', 'Verb', 'can (I) go?']] },
       { s: 'b', en: 'Yes, walk there.', w: [['Haudu', 'ಹೌದು', 'Particle', 'yes'], ['naDedu', 'ನಡೆದು', 'Verb', 'by walking'], ['hogi', 'ಹೋಗಿ', 'Verb', 'please go']] },
-      { s: 'a', en: 'Thank you!', w: [['Dhanyavaada', 'ಧನ್ಯವಾದ', 'Noun', 'thanks']] }
+      { s: 'a', en: "Until what time does the metro run?", w: [['Metro', 'ಮೆಟ್ರೋ', 'Noun', 'metro'], ['eshtu', 'ಎಷ್ಟು', 'Question word', 'how much'], ['ganTe', 'ಗಂಟೆ', 'Noun', 'o’clock'], ['tanaka', 'ತನಕ', 'Postposition', 'until'], ['ide?', 'ಇದೆ?', 'Verb', 'is it there']] },
+      { s: 'b', en: "Until eleven at night.", w: [['Raatri', 'ರಾತ್ರಿ', 'Noun', 'night'], ['hannondu', 'ಹನ್ನೊಂದು', 'Number', 'eleven'], ['ganTe', 'ಗಂಟೆ', 'Noun', 'o’clock'], ['tanaka', 'ತನಕ', 'Postposition', 'until']] },
+      { s: 'a', en: 'Thank you!', w: [['Dhanyavaada', 'ಧನ್ಯವಾದ', 'Noun', 'thanks']] },
+      { s: 'b', en: "No problem, go carefully.", w: [['Paravaagilla', 'ಪರವಾಗಿಲ್ಲ', 'Particle', 'no problem'], ['hushaaraagi', 'ಹುಷಾರಾಗಿ', 'Adverb', 'carefully'], ['hogi', 'ಹೋಗಿ', 'Verb', 'please go']] }
     ]
   },
   {
@@ -136,11 +172,19 @@ const SCENARIOS = [
       { s: 'b', en: 'My name is Lakshmi.', w: [['Nanna', 'ನನ್ನ', 'Pronoun', 'my'], ['hesaru', 'ಹೆಸರು', 'Noun', 'name'], ['Lakshmi', 'ಲಕ್ಷ್ಮಿ', 'Noun', 'Lakshmi (a name)']] },
       { s: 'b', en: 'Where have you come from?', w: [['Neevu', 'ನೀವು', 'Pronoun', 'you (polite)'], ['ellinda', 'ಎಲ್ಲಿಂದ', 'Question word', 'from where'], ['bandiddeera?', 'ಬಂದಿದ್ದೀರಾ?', 'Verb', 'have you come?']] },
       { s: 'a', en: 'I have come from Delhi.', w: [['Naanu', 'ನಾನು', 'Pronoun', 'I'], ['Delhi-yinda', 'ದೆಹಲಿಯಿಂದ', 'Noun', 'from Delhi'], ['bandiddeeni', 'ಬಂದಿದ್ದೀನಿ', 'Verb', 'I have come']] },
+      { s: 'b', en: "What work do you do here?", w: [['Illi', 'ಇಲ್ಲಿ', 'Adverb', 'here'], ['enu', 'ಏನು', 'Question word', 'what'], ['kelsa?', 'ಕೆಲಸ?', 'Noun', 'work']] },
+      { s: 'a', en: "I am a software engineer.", w: [['Naanu', 'ನಾನು', 'Pronoun', 'I'], ['software engineer', 'ಸಾಫ್ಟ್‌ವೇರ್ ಇಂಜಿನಿಯರ್', 'Noun', 'software engineer']] },
+      { s: 'b', en: "Oh, in Bengaluru everyone is in software!", w: [['O', 'ಓ', 'Interjection', 'oh'], ['Bengaloorinalli', 'ಬೆಂಗಳೂರಿನಲ್ಲಿ', 'Noun', 'in Bengaluru'], ['ellaru', 'ಎಲ್ಲರೂ', 'Pronoun', 'everyone'], ['software!', 'ಸಾಫ್ಟ್‌ವೇರ್!', 'Noun', 'software']] },
       { s: 'b', en: 'Do you know Kannada?', w: [['Kannada', 'ಕನ್ನಡ', 'Noun', 'Kannada'], ['barutta?', 'ಬರುತ್ತಾ?', 'Verb', 'does it come (to you)?']] },
       { s: 'a', en: 'I know a little.', w: [['Swalpa', 'ಸ್ವಲ್ಪ', 'Adverb', 'a little'], ['swalpa', 'ಸ್ವಲ್ಪ', 'Adverb', 'a little'], ['barutte', 'ಬರುತ್ತೆ', 'Verb', 'it comes (to me)']] },
+      { s: 'b', en: "No problem, you will learn quickly.", w: [['Paravaagilla', 'ಪರವಾಗಿಲ್ಲ', 'Particle', 'no problem'], ['bega', 'ಬೇಗ', 'Adverb', 'quickly'], ['kaleeteeri', 'ಕಲೀತೀರಿ', 'Verb', 'you will learn']] },
       { s: 'b', en: 'Have you eaten?', w: [['Oota', 'ಊಟ', 'Noun', 'meal'], ['aayta?', 'ಆಯ್ತಾ?', 'Verb', 'is it done?']] },
       { s: 'a', en: 'Yes. And you?', w: [['Aaytu', 'ಆಯ್ತು', 'Verb', 'it is done'], ['nimdu?', 'ನಿಮ್ದು?', 'Pronoun', 'yours?']] },
-      { s: 'b', en: 'If you need anything, tell me.', w: [['Enaadru', 'ಏನಾದ್ರೂ', 'Pronoun', 'anything'], ['beku', 'ಬೇಕು', 'Verb', 'is needed'], ['andre', 'ಅಂದ್ರೆ', 'Conjunction', 'if'], ['heLi', 'ಹೇಳಿ', 'Verb', 'please tell']] }
+      { s: 'b', en: 'If you need anything, tell me.', w: [['Enaadru', 'ಏನಾದ್ರೂ', 'Pronoun', 'anything'], ['beku', 'ಬೇಕು', 'Verb', 'is needed'], ['andre', 'ಅಂದ್ರೆ', 'Conjunction', 'if'], ['heLi', 'ಹೇಳಿ', 'Verb', 'please tell']] },
+      { s: 'a', en: "Thank you. Which is your house?", w: [['Nimma', 'ನಿಮ್ಮ', 'Pronoun', 'your'], ['mane', 'ಮನೆ', 'Noun', 'house'], ['yaavudu?', 'ಯಾವುದು?', 'Question word', 'which one']] },
+      { s: 'b', en: "The house next door, number two.", w: [['Pakkada', 'ಪಕ್ಕದ', 'Adjective', 'next-door'], ['mane', 'ಮನೆ', 'Noun', 'house'], ['nambar', 'ನಂಬರ್', 'Noun', 'number'], ['eraDu', 'ಎರಡು', 'Number', 'two']] },
+      { s: 'b', en: "Come over for coffee in the evening.", w: [['Sanje', 'ಸಂಜೆ', 'Noun', 'evening'], ['coffee-ge', 'ಕಾಫಿಗೆ', 'Noun', 'for coffee'], ['banni', 'ಬನ್ನಿ', 'Verb', 'please come']] },
+      { s: 'a', en: "I will definitely come!", w: [['KhanDita', 'ಖಂಡಿತ', 'Adverb', 'definitely'], ['barteeni!', 'ಬರ್ತೀನಿ!', 'Verb', 'I will come']] }
     ]
   },
   {
@@ -155,11 +199,17 @@ const SCENARIOS = [
     roles: { a: { en: 'Customer', kn: 'ಗ್ರಾಹಕ' }, b: { en: 'Pharmacist', kn: 'ಫಾರ್ಮಸಿಸ್ಟ್' } },
     lines: [
       { s: 'a', en: 'I have a headache. Give me a tablet.', w: [['Talenovu', 'ತಲೆನೋವು', 'Noun', 'headache'], ['ide', 'ಇದೆ', 'Verb', 'there is'], ['maatre', 'ಮಾತ್ರೆ', 'Noun', 'tablet'], ['koDi', 'ಕೊಡಿ', 'Verb', 'please give']] },
+      { s: 'b', en: "Since when?", w: [['Yaavaaginda?', 'ಯಾವಾಗಿಂದ?', 'Question word', 'since when']] },
+      { s: 'a', en: "Since yesterday.", w: [['Ninneyinda', 'ನಿನ್ನೆಯಿಂದ', 'Adverb', 'since yesterday']] },
       { s: 'b', en: 'Do you have a fever?', w: [['Jvara', 'ಜ್ವರ', 'Noun', 'fever'], ['ideya?', 'ಇದೆಯಾ?', 'Verb', 'is there?']] },
       { s: 'a', en: 'No, I do not have a fever.', w: [['Illa', 'ಇಲ್ಲ', 'Particle', 'no'], ['jvara', 'ಜ್ವರ', 'Noun', 'fever'], ['illa', 'ಇಲ್ಲ', 'Verb', 'is not there']] },
+      { s: 'a', en: "I have a bit of a cold too.", w: [['Swalpa', 'ಸ್ವಲ್ಪ', 'Adverb', 'a little'], ['sheeta', 'ಶೀತ', 'Noun', 'a cold'], ['kooDa', 'ಕೂಡ', 'Particle', 'also'], ['ide', 'ಇದೆ', 'Verb', 'there is']] },
+      { s: 'b', en: "Okay, this syrup for the cold.", w: [['Sari', 'ಸರಿ', 'Particle', 'okay'], ['sheetakke', 'ಶೀತಕ್ಕೆ', 'Noun', 'for the cold'], ['ee', 'ಈ', 'Adjective', 'this'], ['syrup', 'ಸಿರಪ್', 'Noun', 'syrup']] },
       { s: 'b', en: 'Take this tablet.', w: [['Ee', 'ಈ', 'Adjective', 'this'], ['maatre', 'ಮಾತ್ರೆ', 'Noun', 'tablet'], ['tagoLLi', 'ತಗೊಳ್ಳಿ', 'Verb', 'please take']] },
       { s: 'a', en: 'How many times a day?', w: [['Dinakke', 'ದಿನಕ್ಕೆ', 'Noun', 'per day'], ['eshtu', 'ಎಷ್ಟು', 'Question word', 'how many'], ['sala?', 'ಸಲ?', 'Noun', 'times']] },
       { s: 'b', en: 'Twice, after food.', w: [['EraDu', 'ಎರಡು', 'Number', 'two'], ['sala', 'ಸಲ', 'Noun', 'times'], ['oota', 'ಊಟ', 'Noun', 'meal'], ['aadmele', 'ಆದ್ಮೇಲೆ', 'Postposition', 'after']] },
+      { s: 'b', en: "Drink hot water.", w: [['Bisi', 'ಬಿಸಿ', 'Adjective', 'hot'], ['neeru', 'ನೀರು', 'Noun', 'water'], ['kuDiyiri', 'ಕುಡಿಯಿರಿ', 'Verb', 'please drink']] },
+      { s: 'b', en: "If it does not get better, see a doctor.", w: [['Kammi', 'ಕಮ್ಮಿ', 'Adjective', 'less'], ['aagilla', 'ಆಗಿಲ್ಲ', 'Verb', 'has not become'], ['andre', 'ಅಂದ್ರೆ', 'Conjunction', 'if'], ['doctor-na', 'ಡಾಕ್ಟರ್‌ನ', 'Noun', 'the doctor'], ['noDi', 'ನೋಡಿ', 'Verb', 'please see']] },
       { s: 'a', en: 'How much is it?', w: [['Eshtu', 'ಎಷ್ಟು', 'Question word', 'how much'], ['aaytu?', 'ಆಯ್ತು?', 'Verb', 'did it become']] },
       { s: 'b', en: 'Twenty rupees.', w: [['Ippattu', 'ಇಪ್ಪತ್ತು', 'Number', 'twenty'], ['rupaayi', 'ರೂಪಾಯಿ', 'Noun', 'rupees']] }
     ]
@@ -179,12 +229,19 @@ const SCENARIOS = [
       { s: 'a', en: 'Hello Aunty. How are you?', w: [['Namaskaara', 'ನಮಸ್ಕಾರ', 'Greeting', 'hello'], ['aunty', 'ಆಂಟಿ', 'Noun', 'aunty'], ['hegiddeera?', 'ಹೇಗಿದ್ದೀರಾ?', 'Verb', 'how are you?']] },
       { s: 'b', en: 'I am fine. How are you?', w: [['Chennaagiddeeni', 'ಚೆನ್ನಾಗಿದ್ದೀನಿ', 'Verb', 'I am fine'], ['neevu', 'ನೀವು', 'Pronoun', 'you (polite)'], ['hegiddeera?', 'ಹೇಗಿದ್ದೀರಾ?', 'Verb', 'how are you?']] },
       { s: 'a', en: 'I am fine too.', w: [['Naanu', 'ನಾನೂ', 'Pronoun', 'I too'], ['chennaagiddeeni', 'ಚೆನ್ನಾಗಿದ್ದೀನಿ', 'Verb', 'I am fine']] },
+      { s: 'b', en: "Was it hard to find the house?", w: [['Mane', 'ಮನೆ', 'Noun', 'house'], ['huDukoke', 'ಹುಡುಕೋಕೆ', 'Verb', 'to find'], ['kashTa', 'ಕಷ್ಟ', 'Noun', 'difficulty'], ['aayta?', 'ಆಯ್ತಾ?', 'Verb', 'did it become?']] },
+      { s: 'a', en: "No, I had Google Maps.", w: [['Illa', 'ಇಲ್ಲ', 'Particle', 'no'], ['Google Maps', 'ಗೂಗಲ್ ಮ್ಯಾಪ್ಸ್', 'Noun', 'Google Maps'], ['ittu', 'ಇತ್ತು', 'Verb', 'was there']] },
       { s: 'a', en: 'How is everyone at home?', w: [['Manelli', 'ಮನೇಲಿ', 'Noun', 'at home'], ['ellaru', 'ಎಲ್ಲರೂ', 'Pronoun', 'everyone'], ['hegiddaare?', 'ಹೇಗಿದ್ದಾರೆ?', 'Verb', 'how are they?']] },
       { s: 'b', en: 'Everyone is fine. Sit down.', w: [['Ellaru', 'ಎಲ್ಲರೂ', 'Pronoun', 'everyone'], ['chennaagiddaare', 'ಚೆನ್ನಾಗಿದ್ದಾರೆ', 'Verb', 'they are fine'], ['kootkoLLi', 'ಕೂತ್ಕೊಳ್ಳಿ', 'Verb', 'please sit']] },
       { s: 'b', en: 'Will you have coffee?', w: [['Coffee', 'ಕಾಫಿ', 'Noun', 'coffee'], ['kuDeeteera?', 'ಕುಡೀತೀರಾ?', 'Verb', 'will you drink?']] },
       { s: 'a', en: 'No thanks, water is enough.', w: [['BeDa', 'ಬೇಡ', 'Verb', 'not needed'], ['neeru', 'ನೀರು', 'Noun', 'water'], ['saaku', 'ಸಾಕು', 'Verb', 'is enough']] },
+      { s: 'b', en: "Oh, at least eat a little snack.", w: [['Ayyo', 'ಅಯ್ಯೋ', 'Interjection', 'oh'], ['swalpa', 'ಸ್ವಲ್ಪ', 'Adverb', 'a little'], ['tinDi', 'ತಿಂಡಿ', 'Noun', 'snack'], ['aadru', 'ಆದ್ರೂ', 'Particle', 'at least'], ['tinni', 'ತಿನ್ನಿ', 'Verb', 'please eat']] },
+      { s: 'a', en: "Okay Aunty, a little.", w: [['Sari', 'ಸರಿ', 'Particle', 'okay'], ['aunty', 'ಆಂಟಿ', 'Noun', 'aunty'], ['swalpa', 'ಸ್ವಲ್ಪ', 'Adverb', 'a little']] },
       { s: 'b', en: 'Have lunch before you go.', w: [['Oota', 'ಊಟ', 'Noun', 'meal'], ['maaDkonDe', 'ಮಾಡ್ಕೊಂಡೇ', 'Verb', 'after having'], ['hogi', 'ಹೋಗಿ', 'Verb', 'please go']] },
-      { s: 'a', en: 'Okay Aunty, thank you so much.', w: [['Sari', 'ಸರಿ', 'Particle', 'okay'], ['aunty', 'ಆಂಟಿ', 'Noun', 'aunty'], ['tumba', 'ತುಂಬಾ', 'Adverb', 'very'], ['thanks', 'ಥ್ಯಾಂಕ್ಸ್', 'Noun', 'thanks (English)']] }
+      { s: 'a', en: "Not today, I will come another time.", w: [['Ivattu', 'ಇವತ್ತು', 'Adverb', 'today'], ['beDa', 'ಬೇಡ', 'Verb', 'not needed'], ['innondsala', 'ಇನ್ನೊಂದ್ಸಲ', 'Adverb', 'another time'], ['barteeni', 'ಬರ್ತೀನಿ', 'Verb', 'I will come']] },
+      { s: 'b', en: "Okay, do come.", w: [['Sari', 'ಸರಿ', 'Particle', 'okay'], ['khanDita', 'ಖಂಡಿತ', 'Adverb', 'definitely'], ['banni', 'ಬನ್ನಿ', 'Verb', 'please come']] },
+      { s: 'a', en: 'Okay Aunty, thank you so much.', w: [['Sari', 'ಸರಿ', 'Particle', 'okay'], ['aunty', 'ಆಂಟಿ', 'Noun', 'aunty'], ['tumba', 'ತುಂಬಾ', 'Adverb', 'very'], ['thanks', 'ಥ್ಯಾಂಕ್ಸ್', 'Noun', 'thanks (English)']] },
+      { s: 'b', en: "Go and come back!", w: [['Hogi', 'ಹೋಗಿ', 'Verb', 'go'], ['banni!', 'ಬನ್ನಿ!', 'Verb', 'come (a Kannada goodbye)']] }
     ]
   }
 ];

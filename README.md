@@ -6,7 +6,7 @@ Open it with GitHub Pages (Settings → Pages → Deploy from branch → `main` 
 
 ## How to use it in class
 
-1. Pick a role play from one of the sections: Getting around, Family friends & kids, Food & taste, Shopping & street help, Famous places. Or open a word list (filler words, slang that impresses locals).
+1. Pick a role play from one of the sections: Getting around, Family friends & kids, Food & taste, Shopping & street help, Home & daily life, Famous places. Or open a word list (filler words, slang that impresses locals).
 2. Choose who the **student** plays. The teacher takes the other role.
 3. Each slide is one line of dialogue, shown as:
    - the sound in English letters
@@ -28,7 +28,7 @@ Links like `…/#airport-a-3` open a role play directly (id, student role `a`/`b
 
 ## Editing scenarios
 
-Role plays live in `data.js` and `data-more.js`; word lists and the home-page sections live in `words.js`. Each word is `[roman, kannada, partOfSpeech, meaning]`, and each line has a speaker role `a` or `b`.
+Role plays live in `data.js`, `data-more.js` and `data-new.js`; word lists and the home-page sections live in `words.js`. Each word is `[roman, kannada, partOfSpeech, meaning]`, and each line has a speaker role `a` or `b`.
 
 Spelling key: `aa / ee / oo` are long vowels; capital `D L T N` are retroflex (tongue curled back).
 
@@ -61,3 +61,13 @@ All photos are from Wikimedia Commons, used under their respective free licenses
 - `img/vvpuram.jpg`: [Avarebele Dose - VV Puram Food Street, Bangalore - Karnataka - PXL5960](https://commons.wikimedia.org/wiki/File:Avarebele_Dose_-_VV_Puram_Food_Street,_Bangalore_-_Karnataka_-_PXL5960.jpg)
 - `img/fillers.jpg`: [Bangalore city image](https://commons.wikimedia.org/wiki/File:Bangalore_city_image.jpg)
 - `img/slang.jpg`: [Brigade Road Bangalore](https://commons.wikimedia.org/wiki/File:Brigade_Road_Bangalore.jpg)
+- `img/biketaxi.jpg`: [Bangalore India traffic](https://commons.wikimedia.org/wiki/File:Bangalore_India_traffic.jpg)
+- `img/renting.jpg`: [Apartment buildings in Bengaluru (2026)](https://commons.wikimedia.org/wiki/File:Apartment_buildings_in_Bengaluru_(2026).jpg)
+- `img/househelp.jpg`: [Preparation of cooking Indian food at kitchen in a household](https://commons.wikimedia.org/wiki/File:Preparation_of_cooking_Indian_food_at_kitchen_in_a_household.jpg)
+- `img/delivery.jpg`: [BDA Link Road - after rain (2022) 01](https://commons.wikimedia.org/wiki/File:BDA_Link_Road_-_after_rain_(2022)_01.jpg)
+- `img/doctor.jpg`: [Doctors Table](https://commons.wikimedia.org/wiki/File:Doctors_Table.jpg)
+- `img/office.jpg`: [IBM Bangalore Manyata 2](https://commons.wikimedia.org/wiki/File:IBM_Bangalore_Manyata_2.jpg)
+- `img/salon.jpg`: [A Barber Shop in Koovery](https://commons.wikimedia.org/wiki/File:A_Barber_Shop_in_Koovery.jpg)
+- `img/bakery.jpg`: [Iyengar Bakery, Dasarahalli, Bangalore, India](https://commons.wikimedia.org/wiki/File:Iyengar_Bakery,_Dasarahalli,_Bangalore,_India.jpg)
+- `img/deepavali.jpg`: [Diyas on a deepavali day](https://commons.wikimedia.org/wiki/File:Diyas_on_a_deepavali_day.jpg)
+- `img/temple.jpg`: [Sri Big Bull Temple, Dodda Ganeshana Gudi, Bangalore, India - 20130526-05](https://commons.wikimedia.org/wiki/File:Sri_Big_Bull_Temple,_Dodda_Ganeshana_Gudi,_Bangalore,_India_-_20130526-05.JPG)
