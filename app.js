@@ -4,7 +4,8 @@
   const stage = $('#stage');
 
   const state = {
-    sc: null,          // current scenario
+    sc: null,          // current scenario or word list
+    words: false,      // true when sc is a word list
     student: 'a',      // role key the student plays
     i: 0,              // slide index
     hide: true,        // conceal student lines until revealed
@@ -21,21 +22,44 @@
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const other = (r) => (r === 'a' ? 'b' : 'a');
   const posClass = (p) => 'pos-' + p.toLowerCase().split(' ')[0];
+  const ALL = [...WORDLISTS, ...SCENARIOS];
+  const find = (id) => ALL.find((s) => s.id === id);
+  const isList = (s) => Array.isArray(s.items);
 
   /* ---------- HOME ---------- */
-  function renderGrid() {
-    $('#grid').innerHTML = SCENARIOS.map((s, i) => `
-      <button class="card" type="button" data-id="${s.id}" style="--i:${i};--h:${s.hue};--img:url('${s.img}')">
-        <span class="card-num">${String(i + 1).padStart(2, '0')} · ${s.lines.length} lines</span>
-        <h3>${esc(s.title)}</h3>
-        <span class="kn" lang="kn">${s.kn}</span>
-        <p>${esc(s.blurb)}</p>
-        <span class="roles">${esc(s.roles.a.en)} <span aria-hidden="true">⇄</span><span class="sr-only"> and </span> ${esc(s.roles.b.en)}</span>
-      </button>`).join('');
+  function renderHome() {
+    $('#catNav').innerHTML = CATEGORIES.map((c) => `<a href="#cat-${c.id}">${esc(c.title)}</a>`).join('');
+    let n = 0;
+    $('#sections').innerHTML = CATEGORIES.map((c) => {
+      const list = ALL.filter((s) => s.cat === c.id);
+      const cards = list.map((s) => {
+        const meta = isList(s) ? `${s.items.length} words` : `${s.lines.length} lines`;
+        const roles = isList(s)
+          ? 'Word list · examples'
+          : `${esc(s.roles.a.en)} <span aria-hidden="true">⇄</span><span class="sr-only"> and </span> ${esc(s.roles.b.en)}`;
+        return `<button class="card" type="button" data-id="${s.id}" style="--i:${n++};--h:${s.hue};--img:url('${s.img}')">
+          <span class="card-imgwrap"><span class="card-img" aria-hidden="true" style="display:block"></span></span>
+          <span class="card-body">
+            <span class="card-num">${meta}</span>
+            <h3>${esc(s.title)}</h3>
+            <span class="kn" lang="kn">${s.kn}</span>
+            <p>${esc(s.blurb)}</p>
+            <span class="roles">${roles}</span>
+          </span>
+        </button>`;
+      }).join('');
+      return `<section class="cat-section" id="cat-${c.id}" aria-labelledby="h-${c.id}">
+        <div class="cat-head"><h2 id="h-${c.id}">${esc(c.title)}</h2><span class="kn" lang="kn">${c.kn}</span><span class="count">${list.length} ${c.id === 'words' ? 'lists' : 'role plays'}</span></div>
+        <div class="grid">${cards}</div>
+      </section>`;
+    }).join('');
   }
-  $('#grid').addEventListener('click', (e) => {
+  $('#sections').addEventListener('click', (e) => {
     const c = e.target.closest('.card');
-    if (c) openPicker(SCENARIOS.find((s) => s.id === c.dataset.id), c);
+    if (!c) return;
+    const s = find(c.dataset.id);
+    if (isList(s)) { lastFocus = c; startDeck(s, 'a', 0); }
+    else openPicker(s, c);
   });
 
   /* ---------- PICKER ---------- */
@@ -67,13 +91,19 @@
   });
 
   /* ---------- DECK ---------- */
-  const total = () => state.sc.lines.length + 2; // intro + lines + end
+  const count = () => (state.words ? state.sc.items.length : state.sc.lines.length);
+  const total = () => count() + 2; // intro + content + end
 
   function startDeck(sc, student, i) {
-    state.sc = sc; state.student = student; state.i = i; state.revealed = false;
-    const bg = $('#deckBg');
-    bg.style.backgroundImage = `url('${sc.img}')`;
-    home.hidden = true; home.classList.remove('is-active');
+    state.sc = sc; state.words = isList(sc);
+    state.student = student; state.i = i; state.revealed = false;
+    const img = $('#deckPhotoImg');
+    img.style.backgroundImage = `url('${sc.img}')`;
+    img.style.animation = 'none'; void img.offsetWidth; img.style.animation = '';
+    $('#deckPhotoCap').textContent = state.words ? sc.title : `${sc.place} · Bengaluru`;
+    $('#hideBtn').hidden = state.words;
+    $('#swapBtn').hidden = state.words;
+    home.hidden = true;
     deck.hidden = false;
     updateChrome();
     render(0);
@@ -88,54 +118,104 @@
   }
 
   function updateChrome() {
-    const sc = state.sc, st = state.student, te = other(st);
+    const sc = state.sc;
     $('#deckTitle').textContent = sc.title;
+    if (state.words) {
+      $('#deckRoles').innerHTML = `<span class="t">Word list</span> · <span class="s">${count()} words</span>`;
+      return;
+    }
+    const st = state.student, te = other(st);
     $('#deckRoles').innerHTML = `<span class="t">Teacher: ${esc(sc.roles[te].en)}</span> · <span class="s">Student: ${esc(sc.roles[st].en)}</span>`;
     $('#hideBtn').setAttribute('aria-pressed', String(state.hide));
     $('#hideBtn').textContent = state.hide ? 'Answers hidden' : 'Answers shown';
   }
 
   function isConcealed() {
+    if (state.words) return false;
     const line = state.sc.lines[state.i - 1];
     return !!line && state.hide && !state.revealed && line.s === state.student;
   }
 
-  function slideHTML() {
-    const sc = state.sc, i = state.i, st = state.student, te = other(st);
-    if (i === 0) {
-      return `<div class="slide intro-slide">
-        <span class="place">${esc(sc.place)} · Bengaluru</span>
-        <h2>${esc(sc.title)}</h2>
-        <div class="kn-title" lang="kn">${sc.kn}</div>
-        <div class="cast">
-          <div class="cast-item teacher"><span class="lbl">Teacher plays</span><span class="nm">${esc(sc.roles[te].en)}</span><span class="nm-kn" lang="kn">${sc.roles[te].kn}</span></div>
-          <div class="cast-item student"><span class="lbl">Student plays</span><span class="nm">${esc(sc.roles[st].en)}</span><span class="nm-kn" lang="kn">${sc.roles[st].kn}</span></div>
-        </div>
-        <span class="hint">Press → or Space to begin</span>
-      </div>`;
-    }
-    if (i === total() - 1) {
-      return `<div class="slide intro-slide end-slide">
-        <span class="place">Shabaash! · ಶಭಾಷ್!</span>
-        <h2>Well done</h2>
-        <span class="hint">Now swap: the student plays the ${esc(sc.roles[te].en.toLowerCase())}.</span>
-        <div class="end-actions">
-          <button class="solid-btn" type="button" data-act="swap">⇄ Swap roles and replay</button>
-          <button class="ghost-btn" type="button" data-act="restart">Replay same roles</button>
-          <button class="ghost-btn" type="button" data-act="home">All scenarios</button>
-        </div>
-      </div>`;
-    }
-    const line = sc.lines[i - 1];
-    const isStudent = line.s === st;
-    const role = sc.roles[line.s];
-    const words = line.w.map(([rom, kn, pos, mean], n) => `
+  const wordsHTML = (w) => w.map(([rom, kn, pos, mean], n) => `
       <div class="word" style="--i:${n}">
         <span class="w-rom">${esc(rom)}</span>
         <span class="w-kn" lang="kn">${kn}</span>
         <span class="w-pos ${posClass(pos)}">${esc(pos)}</span>
         <span class="w-mean">${esc(mean)}</span>
       </div>`).join('');
+
+  function introHTML() {
+    const sc = state.sc;
+    if (state.words) {
+      return `<div class="slide intro-slide">
+        <span class="place">${esc(sc.place)}</span>
+        <h2>${esc(sc.title)}</h2>
+        <div class="kn-title" lang="kn">${sc.kn}</div>
+        <span class="hint">Each word comes with a short example. Teacher reads A, student reads B, then swap.</span>
+        <span class="hint">Press → or Space to begin</span>
+      </div>`;
+    }
+    const st = state.student, te = other(st);
+    return `<div class="slide intro-slide">
+      <span class="place">${esc(sc.place)} · Bengaluru</span>
+      <h2>${esc(sc.title)}</h2>
+      <div class="kn-title" lang="kn">${sc.kn}</div>
+      <div class="cast">
+        <div class="cast-item teacher"><span class="lbl">Teacher plays</span><span class="nm">${esc(sc.roles[te].en)}</span><span class="nm-kn" lang="kn">${sc.roles[te].kn}</span></div>
+        <div class="cast-item student"><span class="lbl">Student plays</span><span class="nm">${esc(sc.roles[st].en)}</span><span class="nm-kn" lang="kn">${sc.roles[st].kn}</span></div>
+      </div>
+      <span class="hint">Press → or Space to begin</span>
+    </div>`;
+  }
+
+  function endHTML() {
+    const sc = state.sc;
+    if (state.words) {
+      return `<div class="slide intro-slide end-slide">
+        <span class="place">Shabaash! · ಶಭಾಷ್!</span>
+        <h2>${count()} new words</h2>
+        <span class="hint">Try using three of them in your next conversation.</span>
+        <div class="end-actions">
+          <button class="solid-btn" type="button" data-act="restart">Go through again</button>
+          <button class="ghost-btn" type="button" data-act="home">All scenarios</button>
+        </div>
+      </div>`;
+    }
+    const te = other(state.student);
+    return `<div class="slide intro-slide end-slide">
+      <span class="place">Shabaash! · ಶಭಾಷ್!</span>
+      <h2>Well done</h2>
+      <span class="hint">Now swap: the student plays the ${esc(sc.roles[te].en.toLowerCase())}.</span>
+      <div class="end-actions">
+        <button class="solid-btn" type="button" data-act="swap">⇄ Swap roles and replay</button>
+        <button class="ghost-btn" type="button" data-act="restart">Replay same roles</button>
+        <button class="ghost-btn" type="button" data-act="home">All scenarios</button>
+      </div>
+    </div>`;
+  }
+
+  function itemHTML() {
+    const it = state.sc.items[state.i - 1];
+    const ex = it.ex.map(([rom, kn, en], n) => `
+      <div class="ex-row ${n ? 'B' : 'A'}">
+        <span class="ex-who">${n ? 'B' : 'A'}</span>
+        <span class="ex-rom">${esc(rom)}</span>
+        <span class="ex-kn" lang="kn">${kn}</span>
+        <span class="ex-en">${esc(en)}</span>
+      </div>`).join('');
+    return `<div class="slide wl-slide">
+      <span class="wl-tag">Word ${state.i} of ${count()}</span>
+      <div class="words">${wordsHTML(it.w)}</div>
+      <p class="wl-note">${esc(it.note)}</p>
+      <div class="ex"><span class="ex-label">Example</span>${ex}</div>
+    </div>`;
+  }
+
+  function lineHTML() {
+    const sc = state.sc, st = state.student;
+    const line = sc.lines[state.i - 1];
+    const isStudent = line.s === st;
+    const role = sc.roles[line.s];
     const concealed = isConcealed();
     return `<div class="slide line-slide${concealed ? ' concealed' : ''}">
       <span class="speaker ${isStudent ? 'student' : 'teacher'}">
@@ -147,9 +227,15 @@
           <span class="say-en">${esc(line.en)}</span>
           <button class="reveal-btn" type="button" data-act="reveal">Reveal <kbd>Space</kbd></button>
         </div>` : ''}
-      <div class="words" ${concealed ? 'aria-hidden="true"' : ''}>${words}</div>
+      <div class="words" ${concealed ? 'aria-hidden="true"' : ''}>${wordsHTML(line.w)}</div>
       ${concealed ? '' : `<p class="meaning">${esc(line.en)}</p>`}
     </div>`;
+  }
+
+  function slideHTML() {
+    if (state.i === 0) return introHTML();
+    if (state.i === total() - 1) return endHTML();
+    return state.words ? itemHTML() : lineHTML();
   }
 
   function render(dir) {
@@ -163,7 +249,7 @@
       $('#progressFill').style.width = `${(n / (t - 1)) * 100}%`;
       $('#prevBtn').disabled = n === 0;
       $('#nextBtn').disabled = n === t - 1;
-      history.replaceState(null, '', `#${state.sc.id}-${state.student}-${n}`);
+      history.replaceState(null, '', state.words ? `#${state.sc.id}-${n}` : `#${state.sc.id}-${state.student}-${n}`);
       state.busy = false;
     };
     if (old && dir) {
@@ -173,10 +259,7 @@
     } else draw();
   }
 
-  function reveal() {
-    state.revealed = true;
-    render(0);
-  }
+  function reveal() { state.revealed = true; render(0); }
 
   function go(delta) {
     if (state.busy || !state.sc) return;
@@ -188,6 +271,7 @@
   }
 
   function swap() {
+    if (state.words) return;
     state.student = other(state.student);
     state.i = 0; state.revealed = false;
     updateChrome();
@@ -195,6 +279,7 @@
   }
 
   function toggleHide() {
+    if (state.words) return;
     state.hide = !state.hide;
     store.set('hide', state.hide ? '1' : '0');
     updateChrome();
@@ -232,7 +317,7 @@
     if (k === 'ArrowRight' || k === 'PageDown') { e.preventDefault(); go(1); }
     else if (k === 'ArrowLeft' || k === 'PageUp') { e.preventDefault(); go(-1); }
     else if (k === ' ' || k === 'Enter') {
-      if (e.target.closest && e.target.closest('button') && k === 'Enter') return; // let buttons work
+      if (k === 'Enter' && e.target.closest && e.target.closest('button')) return; // let buttons work
       e.preventDefault(); go(1);
     }
     else if (k === 's' || k === 'S') swap();
@@ -252,16 +337,21 @@
     tx = null;
   });
 
-  /* deep link: #airport-a-3 */
+  /* deep links: #airport-a-3 (role play) or #fillers-3 (word list) */
   function fromHash() {
-    const m = location.hash.match(/^#([a-z]+)-([ab])-(\d+)$/);
-    if (!m) return false;
-    const sc = SCENARIOS.find((s) => s.id === m[1]);
-    if (!sc) return false;
-    startDeck(sc, m[2], Math.min(+m[3], sc.lines.length + 1));
-    return true;
+    let m = location.hash.match(/^#([a-z]+)-([ab])-(\d+)$/);
+    if (m) {
+      const sc = find(m[1]);
+      if (sc && !isList(sc)) startDeck(sc, m[2], Math.min(+m[3], sc.lines.length + 1));
+      return;
+    }
+    m = location.hash.match(/^#([a-z]+)-(\d+)$/);
+    if (m) {
+      const sc = find(m[1]);
+      if (sc && isList(sc)) startDeck(sc, 'a', Math.min(+m[2], sc.items.length + 1));
+    }
   }
 
-  renderGrid();
+  renderHome();
   fromHash();
 })();

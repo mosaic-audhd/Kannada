@@ -4,6 +4,7 @@
 const SCENARIOS = [
   {
     id: 'airport',
+    cat: 'transport',
     title: 'Airport to home',
     kn: 'ಏರ್‌ಪೋರ್ಟ್‌ನಿಂದ ಮನೆಗೆ',
     place: 'Kempegowda International Airport',
@@ -29,6 +30,7 @@ const SCENARIOS = [
   },
   {
     id: 'auto',
+    cat: 'transport',
     title: 'Auto rickshaw ride',
     kn: 'ಆಟೋ ಪ್ರಯಾಣ',
     place: 'MG Road',
@@ -53,6 +55,7 @@ const SCENARIOS = [
   },
   {
     id: 'darshini',
+    cat: 'food',
     title: 'Breakfast at a darshini',
     kn: 'ದರ್ಶಿನಿಯಲ್ಲಿ ತಿಂಡಿ',
     place: 'A self-service darshini',
@@ -74,6 +77,7 @@ const SCENARIOS = [
   },
   {
     id: 'market',
+    cat: 'shopping',
     title: 'Vegetable market',
     kn: 'ತರಕಾರಿ ಮಾರ್ಕೆಟ್',
     place: 'Malleswaram market',
@@ -96,6 +100,7 @@ const SCENARIOS = [
   },
   {
     id: 'directions',
+    cat: 'shopping',
     title: 'Asking for directions',
     kn: 'ದಾರಿ ಕೇಳುವುದು',
     place: 'A busy street corner',
@@ -116,6 +121,7 @@ const SCENARIOS = [
   },
   {
     id: 'neighbour',
+    cat: 'family',
     title: 'Meeting a neighbour',
     kn: 'ಪಕ್ಕದ ಮನೆಯವರ ಪರಿಚಯ',
     place: 'Your apartment building',
@@ -139,6 +145,7 @@ const SCENARIOS = [
   },
   {
     id: 'pharmacy',
+    cat: 'shopping',
     title: 'At the medical shop',
     kn: 'ಮೆಡಿಕಲ್ ಶಾಪ್‌ನಲ್ಲಿ',
     place: 'Neighbourhood pharmacy',
@@ -159,6 +166,7 @@ const SCENARIOS = [
   },
   {
     id: 'relatives',
+    cat: 'family',
     title: 'Visiting relatives',
     kn: 'ನೆಂಟರ ಮನೆಗೆ ಭೇಟಿ',
     place: 'Aunty’s home in Jayanagar',

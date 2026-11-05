@@ -27,7 +27,8 @@
         <div><dt>…i at the end</dt><dd>polite request (banni, koDi)</dd></div>
       </dl>
     </header>
-    <section id="grid" class="grid" aria-label="Role play scenarios"></section>
+    <nav class="cat-nav" id="catNav" aria-label="Jump to a section"></nav>
+    <div id="sections" class="sections"></div>
     <footer class="home-foot">
       <span>Keys: ← → move · Space reveal · S swap roles · H hide answers · Esc back</span>
       <span>Photos: Wikimedia Commons (see README for credits)</span>
@@ -52,9 +53,6 @@
 
   <!-- DECK -->
   <section id="deck" class="view deck" aria-label="Role play slides" hidden>
-    <div class="deck-bg" id="deckBg"></div>
-    <div class="deck-scrim"></div>
-
     <header class="deck-top">
       <button class="chip-btn" id="backBtn" type="button" aria-label="Back to scenarios">← Scenarios</button>
       <div class="deck-title">
@@ -67,14 +65,21 @@
       </div>
     </header>
 
-    <div class="stage" id="stage" aria-live="polite"></div>
-
+    <div class="deck-main">
+      <figure class="deck-photo" id="deckPhoto">
+        <div class="deck-photo-img" id="deckPhotoImg"></div>
+        <figcaption id="deckPhotoCap"></figcaption>
+      </figure>
+      <div class="stage-wrap">
+        <div class="stage" id="stage" aria-live="polite"></div>
     <button class="nav nav-prev" id="prevBtn" type="button" aria-label="Previous slide">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
     </button>
     <button class="nav nav-next" id="nextBtn" type="button" aria-label="Next slide">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
     </button>
+      </div>
+    </div>
 
     <footer class="deck-foot">
       <div class="progress"><div class="progress-fill" id="progressFill"></div></div>
@@ -83,6 +88,8 @@
   </section>
 
   <script src="data.js"></script>
+  <script src="data-more.js"></script>
+  <script src="words.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
