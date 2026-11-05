@@ -27,29 +27,37 @@
   const isList = (s) => Array.isArray(s.items);
 
   /* ---------- HOME ---------- */
+  const catOf = (s) => CATEGORIES.find((c) => c.id === s.cat) || CATEGORIES[0];
+
   function renderHome() {
-    $('#catNav').innerHTML = CATEGORIES.map((c) => `<a href="#cat-${c.id}">${esc(c.title)}</a>`).join('');
+    $('#catNav').innerHTML = CATEGORIES
+      .filter((c) => ALL.some((s) => s.cat === c.id))
+      .map((c) => `<a href="#cat-${c.id}" style="--line:${c.color}">${esc(c.title)}</a>`).join('');
     let n = 0;
     $('#sections').innerHTML = CATEGORIES.map((c) => {
       const list = ALL.filter((s) => s.cat === c.id);
+      if (!list.length) return '';
       const cards = list.map((s) => {
         const meta = isList(s) ? `${s.items.length} words` : `${s.lines.length} lines`;
         const roles = isList(s)
-          ? 'Word list · examples'
+          ? 'Word list with examples'
           : `${esc(s.roles.a.en)} <span aria-hidden="true">⇄</span><span class="sr-only"> and </span> ${esc(s.roles.b.en)}`;
         return `<button class="card" type="button" data-id="${s.id}" style="--i:${n++};--h:${s.hue};--img:url('${s.img}')">
-          <span class="card-imgwrap"><span class="card-img" aria-hidden="true" style="display:block"></span></span>
+          <span class="card-imgwrap"><span class="card-img" aria-hidden="true"></span></span>
           <span class="card-body">
-            <span class="card-num">${meta}</span>
-            <h3>${esc(s.title)}</h3>
             <span class="kn" lang="kn">${s.kn}</span>
+            <h3>${esc(s.title)}</h3>
             <p>${esc(s.blurb)}</p>
-            <span class="roles">${roles}</span>
+            <span class="roles label"><span class="meta">${meta}</span><span>${roles}</span></span>
           </span>
         </button>`;
       }).join('');
-      return `<section class="cat-section" id="cat-${c.id}" aria-labelledby="h-${c.id}">
-        <div class="cat-head"><h2 id="h-${c.id}">${esc(c.title)}</h2><span class="kn" lang="kn">${c.kn}</span><span class="count">${list.length} ${c.id === 'words' ? 'lists' : 'role plays'}</span></div>
+      return `<section class="cat-section" id="cat-${c.id}" aria-labelledby="h-${c.id}" style="--line:${c.color}">
+        <div class="cat-head">
+          <span class="cat-dot" aria-hidden="true"></span>
+          <span class="kn" lang="kn">${c.kn}</span>
+          <h2 id="h-${c.id}">${esc(c.title)} <span class="count">${list.length} ${c.id === 'words' ? 'lists' : 'role plays'}</span></h2>
+        </div>
         <div class="grid">${cards}</div>
       </section>`;
     }).join('');
@@ -67,6 +75,7 @@
   function openPicker(sc, from) {
     lastFocus = from || null;
     state.sc = sc;
+    picker.style.setProperty('--line', catOf(sc).color);
     $('#pickPhoto').style.backgroundImage = `url('${sc.img}')`;
     $('#pickPlace').textContent = sc.place;
     $('#pickTitle').textContent = sc.title;
@@ -101,6 +110,8 @@
     img.style.backgroundImage = `url('${sc.img}')`;
     img.style.animation = 'none'; void img.offsetWidth; img.style.animation = '';
     $('#deckPhotoCap').textContent = state.words ? sc.title : `${sc.place} · Bengaluru`;
+    deck.style.setProperty('--line', catOf(sc).color);
+    $('#stations').innerHTML = '<span class="done-track"></span>' + Array.from({ length: count() + 2 }, () => '<span class="stop"></span>').join('');
     $('#hideBtn').hidden = state.words;
     $('#swapBtn').hidden = state.words;
     home.hidden = true;
@@ -246,7 +257,8 @@
       if (dir) s.classList.add(dir > 0 ? 'enter-next' : 'enter-prev');
       const n = state.i, t = total();
       $('#counter').textContent = `${n + 1} / ${t}`;
-      $('#progressFill').style.width = `${(n / (t - 1)) * 100}%`;
+      $('#stations .done-track').style.width = `${(n / (t - 1)) * 100}%`;
+      document.querySelectorAll('#stations .stop').forEach((el, k) => { el.classList.toggle('done', k < n); el.classList.toggle('here', k === n); });
       $('#prevBtn').disabled = n === 0;
       $('#nextBtn').disabled = n === t - 1;
       history.replaceState(null, '', state.words ? `#${state.sc.id}-${n}` : `#${state.sc.id}-${state.student}-${n}`);

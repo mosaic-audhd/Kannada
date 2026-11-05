@@ -66,10 +66,11 @@ const WORDLISTS = [
 ];
 
 const CATEGORIES = [
-  { id: 'words', title: 'Words to sound local', kn: 'ಪದಗಳು' },
-  { id: 'transport', title: 'Getting around', kn: 'ಪ್ರಯಾಣ' },
-  { id: 'family', title: 'Family, friends & kids', kn: 'ಕುಟುಂಬ ಮತ್ತು ಗೆಳೆಯರು' },
-  { id: 'food', title: 'Food & taste', kn: 'ಊಟ ಮತ್ತು ರುಚಿ' },
-  { id: 'shopping', title: 'Shopping & street help', kn: 'ಖರೀದಿ ಮತ್ತು ಸಹಾಯ' },
-  { id: 'places', title: 'Famous places', kn: 'ಪ್ರಸಿದ್ಧ ಸ್ಥಳಗಳು' }
+  { id: 'words', color: '#d6457f', line: 'Pink line', title: 'Words to sound local', kn: 'ಪದಗಳು' },
+  { id: 'transport', color: '#7b2d8e', line: 'Purple line', title: 'Getting around', kn: 'ಪ್ರಯಾಣ' },
+  { id: 'family', color: '#1d9a4a', line: 'Green line', title: 'Family, friends & kids', kn: 'ಕುಟುಂಬ ಮತ್ತು ಗೆಳೆಯರು' },
+  { id: 'food', color: '#e8731c', line: 'Orange line', title: 'Food & taste', kn: 'ಊಟ ಮತ್ತು ರುಚಿ' },
+  { id: 'shopping', color: '#1f66c9', line: 'Blue line', title: 'Shopping & street help', kn: 'ಖರೀದಿ ಮತ್ತು ಸಹಾಯ' },
+  { id: 'home', color: '#c8302e', line: 'Red line', title: 'Home & daily life', kn: 'ಮನೆ ಮತ್ತು ದಿನಚರಿ' },
+  { id: 'places', color: '#d9a400', line: 'Yellow line', title: 'Famous places', kn: 'ಪ್ರಸಿದ್ಧ ಸ್ಥಳಗಳು' }
 ];

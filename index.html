@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Maathaadi · Bengaluru Kannada role plays</title>
+  <title>Maathaadi</title>
   <meta name="description" content="Everyday Bengaluru Kannada role plays for complete beginners, with transliteration, Kannada script and parts of speech.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Noto+Sans+Kannada:wght@500;600;700;800&display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,22 +15,24 @@
   <!-- HOME -->
   <main id="home" class="view home is-active" aria-labelledby="brand">
     <header class="home-head">
-      <div class="brand-row">
-        <h1 id="brand" class="brand">Maathaadi <span class="brand-kn" lang="kn">ಮಾತಾಡಿ</span></h1>
-        <p class="tag">“Speak!” Everyday Bengaluru Kannada, one conversation at a time.</p>
+      <div class="board">
+        <h1 id="brand" class="brand"><span class="brand-kn" lang="kn">ಮಾತಾಡಿ</span><span class="brand-en">Maathaadi</span></h1>
+        <p class="tag">Speak everyday Bengaluru Kannada, one conversation at a time.</p>
       </div>
-      <p class="intro">Pick a situation, choose who the student plays, and act it out. Every line shows the sound in English letters, the Kannada script, and what each word does in the sentence.</p>
-      <dl class="key" aria-label="How to read the English spelling">
-        <div><dt>aa · ee · oo</dt><dd>long vowel, hold it</dd></div>
-        <div><dt>D · L · T · N</dt><dd>curl the tongue back</dd></div>
-        <div><dt>-ge / -kke</dt><dd>means “to”</dd></div>
-        <div><dt>…i at the end</dt><dd>polite request (banni, koDi)</dd></div>
-      </dl>
+      <div class="head-info">
+        <p class="intro">Pick a situation, choose who the student plays, and act it out together. Every line shows the sound in English letters, the Kannada script, and what each word does in the sentence.</p>
+        <table class="key" aria-label="How to read the English spelling">
+          <tr><th scope="row">aa ee oo</th><td>long vowel, hold it</td></tr>
+          <tr><th scope="row">D L T N</th><td>curl the tongue back</td></tr>
+          <tr><th scope="row">-ge, -kke</th><td>“to” (Indiranagar<b>akke</b>)</td></tr>
+          <tr><th scope="row">-i ending</th><td>polite request (bann<b>i</b>, koD<b>i</b>)</td></tr>
+        </table>
+      </div>
     </header>
     <nav class="cat-nav" id="catNav" aria-label="Jump to a section"></nav>
     <div id="sections" class="sections"></div>
     <footer class="home-foot">
-      <span>Keys: ← → move · Space reveal · S swap roles · H hide answers · Esc back</span>
+      <span><kbd>←</kbd> <kbd>→</kbd> move · <kbd>Space</kbd> reveal · <kbd>S</kbd> swap roles · <kbd>H</kbd> hide answers · <kbd>Esc</kbd> back</span>
       <span>Photos: Wikimedia Commons (see README for credits)</span>
     </footer>
   </main>
@@ -41,7 +43,7 @@
     <div class="picker-card">
       <div class="picker-photo" id="pickPhoto"></div>
       <div class="picker-body">
-        <p class="eyebrow" id="pickPlace"></p>
+        <p class="eyebrow label" id="pickPlace"></p>
         <h2 id="pickTitle"></h2>
         <p class="picker-kn" id="pickKn" lang="kn"></p>
         <p class="picker-q">Who will the <strong>student</strong> play?</p>
@@ -82,7 +84,7 @@
     </div>
 
     <footer class="deck-foot">
-      <div class="progress"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="stations" id="stations" aria-hidden="true"></div>
       <span class="counter" id="counter"></span>
     </footer>
   </section>
