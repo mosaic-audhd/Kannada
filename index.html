@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Maathaadi · Bengaluru Kannada role plays</title>
+  <meta name="description" content="Everyday Bengaluru Kannada role plays for complete beginners, with transliteration, Kannada script and parts of speech.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@500&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- HOME -->
+  <main id="home" class="view home is-active" aria-labelledby="brand">
+    <header class="home-head">
+      <div class="brand-row">
+        <h1 id="brand" class="brand">Maathaadi <span class="brand-kn" lang="kn">ಮಾತಾಡಿ</span></h1>
+        <p class="tag">“Speak!” Everyday Bengaluru Kannada, one conversation at a time.</p>
+      </div>
+      <p class="intro">Pick a situation, choose who the student plays, and act it out. Every line shows the sound in English letters, the Kannada script, and what each word does in the sentence.</p>
+      <dl class="key" aria-label="How to read the English spelling">
+        <div><dt>aa · ee · oo</dt><dd>long vowel, hold it</dd></div>
+        <div><dt>D · L · T · N</dt><dd>curl the tongue back</dd></div>
+        <div><dt>-ge / -kke</dt><dd>means “to”</dd></div>
+        <div><dt>…i at the end</dt><dd>polite request (banni, koDi)</dd></div>
+      </dl>
+    </header>
+    <section id="grid" class="grid" aria-label="Role play scenarios"></section>
+    <footer class="home-foot">
+      <span>Keys: ← → move · Space reveal · S swap roles · H hide answers · Esc back</span>
+      <span>Photos: Wikimedia Commons (see README for credits)</span>
+    </footer>
+  </main>
+
+  <!-- ROLE PICKER -->
+  <div id="picker" class="picker" role="dialog" aria-modal="true" aria-labelledby="pickTitle" hidden>
+    <div class="picker-backdrop" data-close></div>
+    <div class="picker-card">
+      <div class="picker-photo" id="pickPhoto"></div>
+      <div class="picker-body">
+        <p class="eyebrow" id="pickPlace"></p>
+        <h2 id="pickTitle"></h2>
+        <p class="picker-kn" id="pickKn" lang="kn"></p>
+        <p class="picker-q">Who will the <strong>student</strong> play?</p>
+        <div class="picker-options" id="pickOptions"></div>
+        <button class="text-btn" data-close type="button">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DECK -->
+  <section id="deck" class="view deck" aria-label="Role play slides" hidden>
+    <div class="deck-bg" id="deckBg"></div>
+    <div class="deck-scrim"></div>
+
+    <header class="deck-top">
+      <button class="chip-btn" id="backBtn" type="button" aria-label="Back to scenarios">← Scenarios</button>
+      <div class="deck-title">
+        <span id="deckTitle"></span>
+        <span class="deck-roles" id="deckRoles"></span>
+      </div>
+      <div class="deck-tools">
+        <button class="chip-btn" id="hideBtn" type="button" aria-pressed="true" title="Hide the student's lines until revealed (H)">Hide answers</button>
+        <button class="chip-btn" id="swapBtn" type="button" title="Swap roles (S)">⇄ Swap roles</button>
+      </div>
+    </header>
+
+    <div class="stage" id="stage" aria-live="polite"></div>
+
+    <button class="nav nav-prev" id="prevBtn" type="button" aria-label="Previous slide">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+    </button>
+    <button class="nav nav-next" id="nextBtn" type="button" aria-label="Next slide">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+    </button>
+
+    <footer class="deck-foot">
+      <div class="progress"><div class="progress-fill" id="progressFill"></div></div>
+      <span class="counter" id="counter"></span>
+    </footer>
+  </section>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
