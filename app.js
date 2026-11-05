@@ -27,7 +27,13 @@
   const isList = (s) => Array.isArray(s.items);
 
   /* ---------- HOME ---------- */
+  const REG = { polite: 'Polite (neevu)', casual: 'Casual (neenu)' };
   const catOf = (s) => CATEGORIES.find((c) => c.id === s.cat) || CATEGORIES[0];
+
+  function countText(list) {
+    const l = list.filter(isList).length, r = list.length - l;
+    return [l && `${l} word list${l > 1 ? 's' : ''}`, r && `${r} role play${r > 1 ? 's' : ''}`].filter(Boolean).join(' · ');
+  }
 
   function renderHome() {
     $('#catNav').innerHTML = CATEGORIES
@@ -38,7 +44,7 @@
       const list = ALL.filter((s) => s.cat === c.id);
       if (!list.length) return '';
       const cards = list.map((s) => {
-        const meta = isList(s) ? `${s.items.length} words` : `${s.lines.length} lines`;
+        const meta = (isList(s) ? `${s.items.length} words` : `${s.lines.length} lines`) + (s.register ? ` · ${REG[s.register]}` : '');
         const roles = isList(s)
           ? 'Word list with examples'
           : `${esc(s.roles.a.en)} <span aria-hidden="true">⇄</span><span class="sr-only"> and </span> ${esc(s.roles.b.en)}`;
@@ -56,7 +62,7 @@
         <div class="cat-head">
           <span class="cat-dot" aria-hidden="true"></span>
           <span class="kn" lang="kn">${c.kn}</span>
-          <h2 id="h-${c.id}">${esc(c.title)} <span class="count">${list.length} ${c.id === 'words' ? 'lists' : 'role plays'}</span></h2>
+          <h2 id="h-${c.id}">${esc(c.title)} <span class="count">${countText(list)}</span></h2>
         </div>
         <div class="grid">${cards}</div>
       </section>`;
@@ -136,7 +142,7 @@
       return;
     }
     const st = state.student, te = other(st);
-    $('#deckRoles').innerHTML = `<span class="t">Teacher: ${esc(sc.roles[te].en)}</span> · <span class="s">Student: ${esc(sc.roles[st].en)}</span>`;
+    $('#deckRoles').innerHTML = `<span class="t">Teacher: ${esc(sc.roles[te].en)}</span> · <span class="s">Student: ${esc(sc.roles[st].en)}</span>${sc.register ? ` · ${esc(REG[sc.register])}` : ''}`;
     $('#hideBtn').setAttribute('aria-pressed', String(state.hide));
     $('#hideBtn').textContent = state.hide ? 'Answers hidden' : 'Answers shown';
   }
@@ -162,7 +168,7 @@
         <span class="place">${esc(sc.place)}</span>
         <h2>${esc(sc.title)}</h2>
         <div class="kn-title" lang="kn">${sc.kn}</div>
-        <span class="hint">Each word comes with a short example. Teacher reads A, student reads B, then swap.</span>
+        <span class="hint">${esc(sc.hint || 'Each word comes with a short example. Teacher reads A, student reads B, then swap.')}</span>
         <span class="hint">Press → or Space to begin</span>
       </div>`;
     }
@@ -171,6 +177,7 @@
       <span class="place">${esc(sc.place)} · Bengaluru</span>
       <h2>${esc(sc.title)}</h2>
       <div class="kn-title" lang="kn">${sc.kn}</div>
+      ${sc.register ? `<span class="reg reg-${sc.register}">${esc(REG[sc.register])}</span>` : ''}
       <div class="cast">
         <div class="cast-item teacher"><span class="lbl">Teacher plays</span><span class="nm">${esc(sc.roles[te].en)}</span><span class="nm-kn" lang="kn">${sc.roles[te].kn}</span></div>
         <div class="cast-item student"><span class="lbl">Student plays</span><span class="nm">${esc(sc.roles[st].en)}</span><span class="nm-kn" lang="kn">${sc.roles[st].kn}</span></div>
@@ -207,9 +214,10 @@
 
   function itemHTML() {
     const it = state.sc.items[state.i - 1];
+    const labs = state.sc.exLabels;
     const ex = it.ex.map(([rom, kn, en], n) => `
       <div class="ex-row ${n ? 'B' : 'A'}">
-        <span class="ex-who">${n ? 'B' : 'A'}</span>
+        <span class="ex-who${labs ? ' wide' : ''}">${labs ? esc(labs[n]) : (n ? 'B' : 'A')}</span>
         <span class="ex-rom">${esc(rom)}</span>
         <span class="ex-kn" lang="kn">${kn}</span>
         <span class="ex-en">${esc(en)}</span>
@@ -218,7 +226,7 @@
       <span class="wl-tag">Word ${state.i} of ${count()}</span>
       <div class="words">${wordsHTML(it.w)}</div>
       <p class="wl-note">${esc(it.note)}</p>
-      <div class="ex"><span class="ex-label">Example</span>${ex}</div>
+      <div class="ex"><span class="ex-label">${labs ? 'Compare' : 'Example'}</span>${ex}</div>
     </div>`;
   }
 

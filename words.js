@@ -67,6 +67,7 @@ const WORDLISTS = [
 
 const CATEGORIES = [
   { id: 'words', color: '#d6457f', line: 'Pink line', title: 'Words to sound local', kn: 'ಪದಗಳು' },
+  { id: 'meet', color: '#0f8b8d', line: 'Teal line', title: 'Meeting people & goodbyes', kn: 'ಪರಿಚಯ ಮತ್ತು ವಿದಾಯ' },
   { id: 'transport', color: '#7b2d8e', line: 'Purple line', title: 'Getting around', kn: 'ಪ್ರಯಾಣ' },
   { id: 'family', color: '#1d9a4a', line: 'Green line', title: 'Family, friends & kids', kn: 'ಕುಟುಂಬ ಮತ್ತು ಗೆಳೆಯರು' },
   { id: 'food', color: '#e8731c', line: 'Orange line', title: 'Food & taste', kn: 'ಊಟ ಮತ್ತು ರುಚಿ' },

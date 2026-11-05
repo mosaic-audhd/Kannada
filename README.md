@@ -6,7 +6,7 @@ Open it with GitHub Pages (Settings → Pages → Deploy from branch → `main` 
 
 ## How to use it in class
 
-1. Pick a role play from one of the sections: Getting around, Family friends & kids, Food & taste, Shopping & street help, Home & daily life, Famous places. Or open a word list (filler words, slang that impresses locals).
+1. Pick a role play from one of the sections: Getting around, Family friends & kids, Food & taste, Shopping & street help, Home & daily life, Famous places, and Meeting people & goodbyes (each situation in polite and casual speech). Or open a word list (filler words, slang that impresses locals).
 2. Choose who the **student** plays. The teacher takes the other role.
 3. Each slide is one line of dialogue, shown as:
    - the sound in English letters
@@ -28,7 +28,7 @@ Links like `…/#airport-a-3` open a role play directly (id, student role `a`/`b
 
 ## Editing scenarios
 
-Role plays live in `data.js`, `data-more.js` and `data-new.js`; word lists and the home-page sections live in `words.js`. Each word is `[roman, kannada, partOfSpeech, meaning]`, and each line has a speaker role `a` or `b`.
+Role plays live in `data.js`, `data-more.js` and `data-new.js`; word lists and the home-page sections live in `words.js`; the meeting-people role plays and the polite vs casual list live in `data-meet.js`. Each word is `[roman, kannada, partOfSpeech, meaning]`, and each line has a speaker role `a` or `b`.
 
 Spelling key: `aa / ee / oo` are long vowels; capital `D L T N` are retroflex (tongue curled back).
 
@@ -71,3 +71,10 @@ All photos are from Wikimedia Commons, used under their respective free licenses
 - `img/bakery.jpg`: [Iyengar Bakery, Dasarahalli, Bangalore, India](https://commons.wikimedia.org/wiki/File:Iyengar_Bakery,_Dasarahalli,_Bangalore,_India.jpg)
 - `img/deepavali.jpg`: [Diyas on a deepavali day](https://commons.wikimedia.org/wiki/File:Diyas_on_a_deepavali_day.jpg)
 - `img/temple.jpg`: [Sri Big Bull Temple, Dodda Ganeshana Gudi, Bangalore, India - 20130526-05](https://commons.wikimedia.org/wiki/File:Sri_Big_Bull_Temple,_Dodda_Ganeshana_Gudi,_Bangalore,_India_-_20130526-05.JPG)
+- `img/introformal.jpg`: [A tamil youth with greeting gesture](https://commons.wikimedia.org/wiki/File:A_tamil_youth_with_greeting_gesture.JPG)
+- `img/introcasual.jpg`: [Fancy Cutting Chai](https://commons.wikimedia.org/wiki/File:Fancy_Cutting_Chai.jpg)
+- `img/chatformal.jpg`: [Shri Satya Sai Super Speciality Hospital Bus Stop 2-25-2012 5-26-45 PM](https://commons.wikimedia.org/wiki/File:Shri_Satya_Sai_Super_Speciality_Hospital_Bus_Stop_2-25-2012_5-26-45_PM.JPG)
+- `img/chatcasual.jpg`: [Cricket at National Park (289441129)](https://commons.wikimedia.org/wiki/File:Cricket_at_National_Park_(289441129).jpg)
+- `img/byecasual.jpg`: [KSR Bengaluru station platform 5](https://commons.wikimedia.org/wiki/File:KSR_Bengaluru_station_platform_5.jpg)
+- `img/register.jpg`: [Kannada Rajyotsava](https://commons.wikimedia.org/wiki/File:Kannada_Rajyotsava.jpg)
+- `img/byeformal.jpg`: same photo as `img/deepavali.jpg`
